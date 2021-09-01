@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditSheetViewController" customModule="K_O_C__Fleet" customModuleProvider="target">
+            <connections>
+                <outlet property="spreadsheetView" destination="AAm-Jw-zRg" id="lkm-pq-WOf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fx4-YI-4Uj">
+                    <rect key="frame" x="44" y="54" width="327" height="54"/>
+                    <color key="backgroundColor" red="0.095722459260000003" green="0.14801773430000001" blue="0.20785078409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="xMm-nW-DV8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <state key="normal" title="Save">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="9"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onSaveTapped:" destination="-1" eventType="touchUpInside" id="Ryc-pa-2Gn"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAm-Jw-zRg" customClass="SpreadsheetView" customModule="SpreadsheetView">
+                    <rect key="frame" x="0.0" y="118" width="414" height="744"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Fx4-YI-4Uj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="5L2-fA-ofu"/>
+                <constraint firstItem="AAm-Jw-zRg" firstAttribute="top" secondItem="Fx4-YI-4Uj" secondAttribute="bottom" constant="10" id="RMk-54-zgx"/>
+                <constraint firstItem="AAm-Jw-zRg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="alh-Ah-Hg4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AAm-Jw-zRg" secondAttribute="bottom" id="jA7-Ad-fke"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fx4-YI-4Uj" secondAttribute="trailing" constant="43" id="obp-cp-Lff"/>
+                <constraint firstItem="Fx4-YI-4Uj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="44" id="sAM-Pr-Rdg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AAm-Jw-zRg" secondAttribute="trailing" id="wch-AR-BXF"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="79.6875"/>
+        </view>
+    </objects>
+</document>

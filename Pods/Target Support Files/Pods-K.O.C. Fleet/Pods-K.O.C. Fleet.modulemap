@@ -1,0 +1,6 @@
+framework module Pods_K_O_C__Fleet {
+  umbrella header "Pods-K.O.C. Fleet-umbrella.h"
+
+  export *
+  module * { export * }
+}

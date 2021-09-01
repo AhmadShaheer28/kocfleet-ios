@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>459111645944-8vrtmf1e4j21a900o7j0r19qib83spo8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.459111645944-8vrtmf1e4j21a900o7j0r19qib83spo8</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>459111645944-fut1aj7qv74dfcjrpbea0avojt0sncmk.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBNwvaSP-nURlM_2vC1mPLvOGj4_XSU9x4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>459111645944</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.wbayimo.kocfleet</string>
+	<key>PROJECT_ID</key>
+	<string>koc-fleet</string>
+	<key>STORAGE_BUCKET</key>
+	<string>koc-fleet.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:459111645944:ios:6cb36d436faf88befcb10d</string>
+</dict>
+</plist>
