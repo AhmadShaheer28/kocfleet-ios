@@ -152,7 +152,8 @@ extension EditSheetViewController: SpreadsheetViewDelegate, SpreadsheetViewDataS
             }
         }
         cell.delegate = self
-        cell.setup(with: finalData[indexPath.row][indexPath.column].value, indexPath.column)
+        let index = (indexPath.row == finalData.count - 1) ? indexPath.column : -1
+        cell.setup(with: finalData[indexPath.row][indexPath.column].value, index)
         cell.setLabelBackgroundColor(with: finalData[indexPath.row][indexPath.column].color)
         return cell
     }
@@ -164,6 +165,8 @@ extension EditSheetViewController: SpreadsheetViewDelegate, SpreadsheetViewDataS
 
 extension EditSheetViewController: TextfieldChangedText {
     func onTextChanged(to text: String, at index: Int) {
-        array[index] = text
+        if index != -1 {
+            array[index] = text
+        }
     }
 }
