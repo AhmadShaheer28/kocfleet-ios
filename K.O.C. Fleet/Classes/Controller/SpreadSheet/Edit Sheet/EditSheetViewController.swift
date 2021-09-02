@@ -37,6 +37,7 @@ class EditSheetViewController: UIViewController {
     
     //MARK: - View Setup
     func setupView() {
+        setDataSource()
         getTotalColumnsOfSheet()
         spreadsheetView.register(TextFieldClass.self, forCellWithReuseIdentifier: TextFieldClass.identifier)
         spreadsheetView.gridStyle = .solid(width: 1, color: .black)
@@ -54,24 +55,8 @@ class EditSheetViewController: UIViewController {
     
     @IBAction func onSaveTapped(_ sender: UIButton) {
         if selectedCol == -1 {
-            for col in (0..<colums!) {
-                let index = IndexPath(row: getLastRowNumber(), column: col)
-                if let cell = spreadsheetView.cellForItem(at: index) as? TextFieldClass {
-                    array.append((cell.label.text ?? "") as String)
-                } else {
-                    array.append("~")
-                }
-            }
             delegate?.onSavedDataReceived(with: array)
         } else {
-            for row in (0..<rows!+2) {
-                let index = IndexPath(row: row, column: selectedCol)
-                if let cell = spreadsheetView.cellForItem(at: index) as? TextFieldClass {
-                    array.append((cell.label.text ?? "") as String)
-                } else {
-                    array.append("~")
-                }
-            }
             delegate?.onSavedColDataReceived(with: array)
         }
         navigationController?.popViewController(animated: true)
@@ -80,7 +65,25 @@ class EditSheetViewController: UIViewController {
     
     //MARK: - Data Source
     
-    
+    private func setDataSource() {
+        if selectedCol != -1 {
+            for row in finalData {
+                for (index, col) in row.enumerated() {
+                    if index == selectedCol {
+                        array.append(col.value)
+                    }
+                }
+            }
+        } else {
+            for (index, row) in finalData.enumerated() {
+                if index == (finalData.count - 1) {
+                    for col in row {
+                        array.append(col.value)
+                    }
+                }
+            }
+        }
+    }
     
     //MARK: - Private Methods
     
@@ -130,38 +133,37 @@ extension EditSheetViewController: SpreadsheetViewDelegate, SpreadsheetViewDataS
     }
     
     func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
-        if fileName == Constants.CONDITION {
-            return 70
-        }
         return rows ?? 0
     }
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? {
         let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: TextFieldClass.identifier, for: indexPath) as! TextFieldClass
-        cell.label.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         if finalData[indexPath.row].count == 0 {
-            cell.setup(with: "")
+            cell.setup(with: "", -1)
             cell.setLabelBackgroundColor(with: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
             return cell
         }
         if selectedCol != -1 {
             if indexPath.column == (colums! - 1) {
-                cell.setup(with: finalData[indexPath.row][selectedCol].value)
+                cell.setup(with: finalData[indexPath.row][selectedCol].value, (indexPath.row - 2))
                 cell.setLabelBackgroundColor(with: finalData[indexPath.row][selectedCol].color)
+                cell.delegate = self
                 return cell
             }
         }
-        
-        cell.setup(with: finalData[indexPath.row][indexPath.column].value)
+        cell.delegate = self
+        cell.setup(with: finalData[indexPath.row][indexPath.column].value, indexPath.column)
         cell.setLabelBackgroundColor(with: finalData[indexPath.row][indexPath.column].color)
         return cell
     }
     
     
-    //MARK: - UITextFieldDelegate
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        
+}
+
+    //MARK: - UITextField Delegate
+
+extension EditSheetViewController: TextfieldChangedText {
+    func onTextChanged(to text: String, at index: Int) {
+        array[index] = text
     }
-    
 }

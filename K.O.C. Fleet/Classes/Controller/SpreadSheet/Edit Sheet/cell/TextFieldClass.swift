@@ -9,13 +9,15 @@ import Foundation
 import SpreadsheetView
 import UIKit
 
-class TextFieldClass: Cell, UITextFieldDelegate {
+class TextFieldClass: Cell {
     
     
     //MARK: - Variables
     
     static let identifier = "TextFieldClass"
     let label = UITextField()
+    private var index = -1
+    var delegate: TextfieldChangedText?
     
     
     //MARK: - Override function
@@ -27,37 +29,28 @@ class TextFieldClass: Cell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        label.delegate = self
     }
     
     
     //MARK: - Public function
-    public func setup(with text: String) {
+    public func setup(with text: String, _ index: Int) {
         label.text = text
         label.textAlignment = .center
         contentView.addSubview(label)
         label.font = label.font?.withSize(12)
         label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.index = index
+        label.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     public func setLabelBackgroundColor(with color: UIColor) {
         label.backgroundColor = color
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if let text = textField.text,
-           let textRange = Range(range, in: text) {
-            let updatedText = text.replacingCharacters(in: textRange,
-                                                       with: string)
-            //myvalidator(text: updatedText)
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text {
+            delegate?.onTextChanged(to: text, at: index)
         }
-        
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print(textField.text!)
     }
     
 }

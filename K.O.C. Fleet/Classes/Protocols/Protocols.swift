@@ -22,3 +22,7 @@ protocol SaveDataDelegate {
     func onSavedColDataReceived(with savedCol: [String])
 }
 
+protocol TextfieldChangedText {
+    func onTextChanged(to text: String, at index: Int)
+}
+
